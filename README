@@ -1,0 +1,25 @@
+Program written using C and OpenMP
+
+Conway's Game of Life takes a matrix filled with 1s and 0s
+  Determines the value in each cell of the next matrix generation based on the values surrounding the cell in its current matrix
+
+Takes input from command line in following order
+  Number of generations to simulate
+  Dimensions of matrix (assume square matrix)
+  Number of threads to use (when parallizing)
+  Filename of the file containing the original matrix
+  
+Psuedocode
+  For each generation
+    For each row of the current matrix (Parallelize on rows of each matrix)
+      For each column 
+        Count the number of alive neighbors for specific cell
+        Depending on number of alive neighbors, set the value for current cell in next matrix generation
+  
+Challenges
+  Cannot parallelize on generations since previous generation is needed to make the upcoming generation
+    Parallelize by analyzing the rows of a single matrix generation with threads
+  Lost time when parallelizing --> inefficient use of threads
+  Updating working matrix
+    Must not update until every cell of next generation is determined
+    
